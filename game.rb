@@ -5,7 +5,6 @@ class Game
 	include Question
 
 	def initialize
-		binding.pry
 		@questions = Question.new
 		@right_answers = 0
 		@tries = 0
@@ -24,6 +23,8 @@ class Game
 					if answer == question[:answer]
 						question[:answered] = true
 						@right_answers += 1
+						right_answer
+						again = false
 					else
 						next_answer = wrong_answer
 						again = next_answer == 1 ? true : false
@@ -44,17 +45,26 @@ class Game
 			puts "---- 2) No puede llamar a un amigo"
 			puts "---- 3) No se vale buscar en San Google"
 			puts ""
-			print "Presiona cualquier tecla para continuar... "
-		end
-
-		def show_question(question)
-			puts "-- Pregunta: "
-			puts "---- #{question}"
-			print "Tu respuesta: "
+			puts "Presiona cualquier tecla para continuar... "
 			gets.chomp
 		end
 
+		def show_question(question)
+			puts
+			puts "-- Pregunta: "
+			puts "---- #{question}"
+			print "--- Tu respuesta: "
+			gets.chomp
+		end
+
+		def right_answer
+			puts
+			puts "** Excelente, respuesta correcta!! **"
+			puts
+		end
+
 		def wrong_answer
+			puts
 			puts "** Respuesta incorrecta **"
 			puts "----1) Reintentar"
 			puts "----2) Continuar"
@@ -63,6 +73,7 @@ class Game
 		end
 
 		def final_message
+			puts
 			puts "Felicidades! has contestado correctamente todas las preguntas!"
 			puts "Total de intentos: #{@tries}"
 		end
