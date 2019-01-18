@@ -16,18 +16,21 @@ class Game
 	def start_game
 		while @right_answers < @questions.questions.length
 			@questions.questions.each do |question|
-				again = true
-				while again
-					@tries += 1
-					answer = show_question(question[:question])
-					if answer == question[:answer]
-						question[:answered] = true
-						@right_answers += 1
-						right_answer
-						again = false
-					else
-						next_answer = wrong_answer
-						again = next_answer == 1 ? true : false
+				if question[:answered] != true
+					again = true
+					while again
+						@tries += 1
+						answer = show_question(question[:question])
+						binding.pry
+						if answer == question[:answer]
+							question[:answered] = true
+							@right_answers += 1
+							right_answer
+							again = false
+						else
+							next_answer = wrong_answer
+							again = next_answer == 1 ? true : false
+						end
 					end
 				end
 			end
