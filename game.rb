@@ -1,12 +1,11 @@
-require "./questions.rb"
+require_relative "questions.rb"
 require "pry"
 
-
-include Question
-
 class Game
+	include Question
 
 	def initialize
+		binding.pry
 		@questions = Question.new
 		@right_answers = 0
 		@tries = 0
