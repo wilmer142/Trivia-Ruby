@@ -25,7 +25,7 @@ module Question
 							@questions.push(question)
 						elsif line.include? "(Respuesta)"
 							line.chomp!.slice! " (Respuesta)"
-							@questions[-1][:answer] = line
+							@questions[-1][:answer] = line.strip
 						end
 					end
 				else
