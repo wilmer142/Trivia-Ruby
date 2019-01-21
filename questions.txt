@@ -3,3 +3,6 @@ alias (Respuesta)
 
 Usado para definir una funcion (Definicion)
 def (Respuesta) 
+
+Un tipo de archivo en el que todos los valores están delimitados por comas (Definicion)
+CSV (Respuesta)

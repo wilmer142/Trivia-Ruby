@@ -20,12 +20,18 @@ module Question
 				if File.file?(filename)
 					File.open(filename).each do |line|
 						if line.include? "(Definicion)"
-							line.chomp!.slice! " (Definicion)"
+							if line.include? "\n" 
+								line.chomp!.slice! " (Definicion)" 
+							end 
+							line.slice! " (Definicion)"
 							question = {question: line, answer: "", answered: false }
 							@questions.push(question)
 						elsif line.include? "(Respuesta)"
-							line.chomp!.slice! " (Respuesta)"
-							@questions[-1][:answer] = line
+							if line.include? "\n" 
+								line.chomp!.slice! " (Respuesta)" 
+							end 
+							line.slice! " (Respuesta)"
+							@questions[-1][:answer] = line.strip
 						end
 					end
 				else

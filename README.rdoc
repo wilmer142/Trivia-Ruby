@@ -1,0 +1,11 @@
+# Trivia Ruby
+
+### Implementación en Ruby de juego para agregar y contestar preguntas
+
+* **Versión de ruby:** 2.4.1 
+
+* **Instrucciones
+
+		* Las preguntas deben agregarse en el archivo questions.rb, el cual debe estar ubicado en la misma carpeta del proyecto.
+
+		* Las preguntas y sus respectivas respuestas deben estar agrupadas y denotarse al de la linea con "(Definicion)" en caso de ser pregunta, y "(Respuesta)" en caso de ser la linea de la respuesta. Ver archivo de preguntas.

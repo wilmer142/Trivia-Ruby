@@ -1,10 +1,8 @@
-require "./questions.rb"
+require_relative "questions.rb"
 require "pry"
 
-
-include Question
-
 class Game
+	include Question
 
 	def initialize
 		@questions = Question.new
@@ -18,16 +16,20 @@ class Game
 	def start_game
 		while @right_answers < @questions.questions.length
 			@questions.questions.each do |question|
-				again = true
-				while again
-					@tries += 1
-					answer = show_question(question[:question])
-					if answer == question[:answer]
-						question[:answered] = true
-						@right_answers += 1
-					else
-						next_answer = wrong_answer
-						again = next_answer == 1 ? true : false
+				if question[:answered] != true
+					again = true
+					while again
+						@tries += 1
+						answer = show_question(question[:question])
+						if answer == question[:answer]
+							question[:answered] = true
+							@right_answers += 1
+							right_answer
+							again = false
+						else
+							next_answer = wrong_answer
+							again = next_answer == 1 ? true : false
+						end
 					end
 				end
 			end
@@ -45,17 +47,26 @@ class Game
 			puts "---- 2) No puede llamar a un amigo"
 			puts "---- 3) No se vale buscar en San Google"
 			puts ""
-			print "Presiona cualquier tecla para continuar... "
-		end
-
-		def show_question(question)
-			puts "-- Pregunta: "
-			puts "---- #{question}"
-			print "Tu respuesta: "
+			puts "Presiona cualquier tecla para continuar... "
 			gets.chomp
 		end
 
+		def show_question(question)
+			puts
+			puts "-- Pregunta: "
+			puts "---- #{question}"
+			print "--- Tu respuesta: "
+			gets.chomp
+		end
+
+		def right_answer
+			puts
+			puts "** Excelente, respuesta correcta!! **"
+			puts
+		end
+
 		def wrong_answer
+			puts
 			puts "** Respuesta incorrecta **"
 			puts "----1) Reintentar"
 			puts "----2) Continuar"
@@ -64,6 +75,7 @@ class Game
 		end
 
 		def final_message
+			puts
 			puts "Felicidades! has contestado correctamente todas las preguntas!"
 			puts "Total de intentos: #{@tries}"
 		end
