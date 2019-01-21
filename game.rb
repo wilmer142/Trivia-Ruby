@@ -21,7 +21,6 @@ class Game
 					while again
 						@tries += 1
 						answer = show_question(question[:question])
-						binding.pry
 						if answer == question[:answer]
 							question[:answered] = true
 							@right_answers += 1
